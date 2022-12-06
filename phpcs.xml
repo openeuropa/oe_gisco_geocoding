@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="OpenEuropa GISCO Geocoder">
+  <description>Drupal CodeSniffer configuration for OpenEuropa GISCO Geocoder.</description>
+  <rule ref="./vendor/drupal/coder/coder_sniffer/Drupal"/>
+  <rule ref="./vendor/drupal/coder/coder_sniffer/DrupalPractice"/>
+  <config name="installed_paths" value="../../slevomat/coding-standard"/>
+  <file>./modules</file>
+  <arg name="extensions" value="css,inc,info,install,js,module,php"/>
+  <arg name="report" value="full"/>
+  <arg value="p"/>
+  <arg name="parallel" value="1"/>
+</ruleset>
