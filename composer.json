@@ -1,0 +1,73 @@
+{
+    "name": "openeuropa/oe_gisco_geocoding",
+    "description": "Allows to use the GISCO Geocoder service in sites built on the OpenEuropa platform",
+    "type": "drupal-module",
+    "license": "EUPL-1.2",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "drupal/geocoder": "^4.4",
+        "openeuropa/gisco-geocoding-provider": "dev-ISAICP-7452 as 1.0.0"
+    },
+    "require-dev": {
+        "behat/mink": "^1.10",
+        "composer/installers": "^2.2",
+        "drupal/coder": "^8.3.16",
+        "drupal/core": "^10",
+        "drupal/core-composer-scaffold": "^10",
+        "drush/drush": "^11.3",
+        "mikey179/vfsstream": "^1.6.11",
+        "phpspec/prophecy-phpunit": "^2",
+        "phpunit/phpunit": "^9.5",
+        "symfony/phpunit-bridge": "^6.2"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "test -f Makefile || cp Makefile.dist Makefile",
+            "make symlink-module"
+        ],
+        "post-update-cmd":  [
+            "test -f Makefile || cp Makefile.dist Makefile",
+            "make symlink-module"
+        ],
+        "setup": [
+            "make install-drupal"
+        ]
+    },
+    "extra": {
+        "installer-paths": {
+            "build/core": [
+                "type:drupal-core"
+            ],
+            "build/modules/{$name}": [
+                "type:drupal-module"
+            ]
+        },
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "build/"
+            },
+            "file-mapping": {
+                "[project-root]/.editorconfig": false
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true,
+            "drupal/core-composer-scaffold": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/openeuropa/gisco-geocoding-provider.git"
+        },
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ]
+}

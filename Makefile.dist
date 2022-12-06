@@ -1,0 +1,13 @@
+DRUPAL_DATABASE_URL="mysql://root@mysql/drupal"
+
+symlink-module:
+	rm -f ./build/modules/oe_gisco_geocoding
+	ln -s ../../modules/oe_gisco_geocoding/ ./build/modules/
+
+install-drupal:
+	rm -f ./build/sites/default/settings.php
+	cp ./build/sites/default/default.settings.php ./build/sites/default/settings.php
+	echo '$$settings["skip_permissions_hardening"] = TRUE;' >> ./build/sites/default/settings.php
+	./vendor/bin/drush --yes --root=build sql:drop --db-url=${DRUPAL_DATABASE_URL}
+	./vendor/bin/drush --yes --root=build site-install --db-url=${DRUPAL_DATABASE_URL}
+	./vendor/bin/drush --yes --root=build pm:install oe_gisco_geocoding

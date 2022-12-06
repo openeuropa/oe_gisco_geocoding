@@ -1,0 +1,6 @@
+/.gitattributes
+/Makefile
+/build/
+/composer.lock
+/phpunit.xml
+/vendor/
